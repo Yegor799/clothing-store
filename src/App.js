@@ -1,11 +1,12 @@
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import HomePage from './pages/homepage/Homepage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
-import { auth } from './firebase/firebase.utils';
+
 
 
 
@@ -17,9 +18,12 @@ function App() {
  
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
+      createUserProfileDocument(user);
+      setCurrentUser(user)
+      
     })
   }, []);  
+  
   
 
   return (
