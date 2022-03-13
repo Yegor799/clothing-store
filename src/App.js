@@ -2,10 +2,11 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { doc, onSnapshot } from "firebase/firestore";
 import HomePage from './pages/homepage/Homepage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/Header/Header';
-import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
+import SignInSignUp from './pages/sign-in-sign-up/SignInSignUp';
 
 
 
@@ -17,9 +18,19 @@ function App() {
   
  
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      createUserProfileDocument(user);
-      setCurrentUser(user)
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        onSnapshot(userRef, snapShot => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          })
+        })
+      } else {
+        setCurrentUser(userAuth);
+     }
       
     })
   }, []);  
@@ -38,7 +49,7 @@ function App() {
   );
 }
 
-//098 в процессе
+
 
 export default App;
 
