@@ -2,7 +2,8 @@ import './SignIn.scss';
 import { useState } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+import {  signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
 
@@ -19,6 +20,19 @@ const SignIn = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                
+                const user = userCredential.user;
+                
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+            });
+
         setEmail('');
         setPassword('');
     };
