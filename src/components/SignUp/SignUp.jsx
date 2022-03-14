@@ -38,42 +38,22 @@ const SignUp = () => {
         }
 
         createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    createUserProfileDocument(user, { displayName });
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage)
-  });
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                createUserProfileDocument(user, { displayName });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage)
+            });
 
-//         try {
-//             // const { user } = await auth.createUserWithEmailAndPassword(email, password);
+        setDisplayName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
 
-//             createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in 
-//     const user = userCredential.user;
-//     createUserProfileDocument(user, { displayName });
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-
-//             await createUserProfileDocument(user, { displayName });
-
-            setDisplayName('');
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-
-//         } catch (error) {
-//             console.error(error)
-//         }
     };
 
     return (
