@@ -1,7 +1,7 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import {  onSnapshot } from "firebase/firestore";
@@ -14,8 +14,11 @@ import SignInSignUp from './pages/sign-in-sign-up/SignInSignUp';
 
 function App() {
 
-  const dispatch = useDispatch();  
- 
+  const currentUser = useSelector(state => state.user.currentUser);
+  const dispatch = useDispatch(); 
+  
+  const navigate = useNavigate();
+  
   useEffect(() => {
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -29,10 +32,17 @@ function App() {
         })
       } else {
         dispatch(setCurrentUser(userAuth));
-     }
+      }
       
     })
-  }, [dispatch]);  
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser) {
+      return navigate("/");
+    }
+  }, [currentUser, navigate]);
+  
   
   
 
@@ -52,6 +62,6 @@ function App() {
 
 export default App;
 
-//начал 118 папка 8
+//начал 121 папка 8
 
 
