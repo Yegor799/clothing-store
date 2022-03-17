@@ -16,6 +16,8 @@ function App() {
 
   const currentUser = useSelector(state => state.user.currentUser);
   const dispatch = useDispatch(); 
+
+  
   
   const navigate = useNavigate();
   
@@ -37,14 +39,14 @@ function App() {
     })
   }, [dispatch]);
 
-  useEffect(() => {
-    if (currentUser) {
-      return navigate("/");
-    }
-  }, [currentUser, navigate]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate("/")
+  //   }
+  //   return
+  // }, [currentUser, navigate]);
   
-  
-  
+     
 
   return (
     <div>
@@ -55,13 +57,13 @@ function App() {
         <Route path="signin" element={<SignInSignUp />} />
       </Routes>
     </div>
-  );
+  )
 }
 
 
 
 export default App;
 
-//начал 124 папка 8
+//начал 126 папка 8
 
 

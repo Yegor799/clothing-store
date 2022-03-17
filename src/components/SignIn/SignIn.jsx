@@ -3,12 +3,23 @@ import { useState } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
-import {  signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+
 
 const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const currentUser = useSelector(state => state.user.currentUser);
+
+    console.log(currentUser)
+
+    const navigate = useNavigate();
+   
 
     const onEmailChange = (e) => {
         setEmail(e.target.value)
@@ -32,11 +43,12 @@ const SignIn = () => {
                 const errorMessage = error.message;
                 console.error(errorCode, errorMessage);
             });
-
+        
         setEmail('');
         setPassword('');
     };
 
+    
     return (
         <div className='sign-in'>
             <h2>I already have an account</h2>
@@ -48,7 +60,7 @@ const SignIn = () => {
 
                 
                 <div className='buttons'>
-                <CustomButton type="submit">
+                <CustomButton type="submit" onClick={() => navigate('/')}>
                     Sign in
                 </CustomButton>
 
