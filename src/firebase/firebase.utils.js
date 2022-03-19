@@ -6,6 +6,8 @@ import { getFirestore, setDoc, getDoc, doc } from 'firebase/firestore';
 
 
 
+
+
 const config = {
     apiKey: "AIzaSyD_O6DOKGp9-3gfiOSFIGulLiZQ0uNiNOQ",
     authDomain: "clothing-store-bdf39.firebaseapp.com",
@@ -59,6 +61,7 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider)
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
+    
     // ...
   }).catch((error) => {
     // Handle Errors here.

@@ -29,23 +29,28 @@ const SignIn = () => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                
-                const user = userCredential.user;
-                
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {                
+                const user = userCredential.user;                
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.error(errorCode, errorMessage);
             });
+
+        navigate("/");
         
         setEmail('');
         setPassword('');
+    };
+
+    const signInGoogle = async () => {
+        await signInWithGoogle();
+        navigate("/")
     };
 
     
@@ -60,11 +65,11 @@ const SignIn = () => {
 
                 
                 <div className='buttons'>
-                <CustomButton type="submit" onClick={() => navigate('/')}>
+                <CustomButton type="submit" >
                     Sign in
                 </CustomButton>
 
-                <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                <CustomButton onClick={signInGoogle} isGoogleSignIn>
                     Sign in with google
                 </CustomButton>
                 </div>

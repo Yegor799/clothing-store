@@ -1,27 +1,25 @@
 import './App.css';
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import {  onSnapshot } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import HomePage from './pages/homepage/Homepage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/sign-in-sign-up/SignInSignUp';
+import CheckoutPage from './pages/checkout/CheckoutPage';
 
 
 
 function App() {
 
-  const currentUser = useSelector(state => state.user.currentUser);
-  const dispatch = useDispatch(); 
-
+  const dispatch = useDispatch();  
   
-  
-  const navigate = useNavigate();
   
   useEffect(() => {
+    
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -37,17 +35,12 @@ function App() {
       }
       
     })
+
+    return () => auth.onAuthStateChanged();
+    
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     navigate("/")
-  //   }
-  //   return
-  // }, [currentUser, navigate]);
   
-     
-
   return (
     <div>
       <Header />
@@ -55,6 +48,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="shop" element={<ShopPage />} />
         <Route path="signin" element={<SignInSignUp />} />
+        <Route path="checkout" element={<CheckoutPage />} />
       </Routes>
     </div>
   )
@@ -64,6 +58,6 @@ function App() {
 
 export default App;
 
-//начал 126 папка 8
+//начал 138 папка 8
 
 
