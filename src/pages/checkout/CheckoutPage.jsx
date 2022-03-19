@@ -1,5 +1,5 @@
 import './CheckoutPage.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
 
 
@@ -30,7 +30,7 @@ const CheckoutPage = () => {
             </div>
             {
                 cartItems.map(cartItem => (
-                    <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
+                    <CheckoutItem key={cartItem.id} cartItem={cartItem} />
                 ))
             }
             <div className='total'>
