@@ -10,6 +10,7 @@ import ShopPage from './pages/shop/Shop';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/sign-in-sign-up/SignInSignUp';
 import CheckoutPage from './pages/checkout/CheckoutPage';
+import CollectionPage from './pages/collection/Collection';
 
 
 
@@ -46,9 +47,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route path="signin" element={<SignInSignUp />} />
-        <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="/shop" element={<ShopPage />} />        
+        <Route path="/shop/:collectionId" element={<CollectionPage />}/>
+        <Route path="/signin" element={<SignInSignUp />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </div>
   )
@@ -60,4 +62,4 @@ export default App;
 
 
 
-
+//закончил папку 11

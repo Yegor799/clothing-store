@@ -1,13 +1,13 @@
 import "./Directory.scss";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import MenuItem from "../MenuItem/MenuItem";
-import {MAINPAGE_DATA} from "../../data"
+
 
 
 
 const Directory = () => {
 
-    const [sections, setSections] = useState(MAINPAGE_DATA);
+    const sections = useSelector(state => state.directory)
     
     return (
         <div className="directory-menu">
@@ -16,6 +16,6 @@ const Directory = () => {
             ))}
         </div>
     )
-}
+};
 
 export default Directory;
