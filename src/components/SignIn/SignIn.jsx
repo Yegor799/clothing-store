@@ -37,7 +37,7 @@ const SignIn = () => {
                 console.error(errorCode, errorMessage);
             });
 
-        navigate("/");
+        navigate("/",{ replace: true });
         
         setEmail('');
         setPassword('');
@@ -45,7 +45,7 @@ const SignIn = () => {
 
     const signInGoogle = async () => {
         await signInWithGoogle();
-        navigate("/")
+        navigate("/", { replace: true })
     };
 
     
