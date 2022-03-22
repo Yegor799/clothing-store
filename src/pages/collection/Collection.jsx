@@ -20,7 +20,7 @@ const CollectionPage = () => {
 
     // const collection = collections.find(col => col.id === COLLECTION_ID_MAP[collectionId]);  
 
-    const collection = collections.find(item => item.routeName === collectionId);
+    const collection = collections.find(item => item.routeName === collectionId);    
 
     const { title, items } = collection;    
 
