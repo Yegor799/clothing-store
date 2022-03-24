@@ -1,10 +1,6 @@
 import CollectionsOverview from "../../components/CollectionsOverview/CollectionsOverview";
-import CategoryPage from "../collection/Collection";
 
-
-const ShopPage = (props) => {
-
-        
+const ShopPage = () => {        
    
     return (
         <div className="shop-page">

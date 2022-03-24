@@ -4,7 +4,7 @@ import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { async } from '@firebase/util';
+
 
 const SignUp = () => {
 

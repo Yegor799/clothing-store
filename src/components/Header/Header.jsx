@@ -2,7 +2,7 @@ import './Header.scss';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 
@@ -21,9 +21,9 @@ const Header = () => {
                 <Link className='option' to='/shop'>
                     SHOP
                 </Link>
-                <Link className='option' to='/shop'>
+                {/* <Link className='option' to='/shop'>
                     CONTACT
-                </Link>
+                </Link> */}
                 {
                     currentUser
                         ? <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>

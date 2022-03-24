@@ -6,19 +6,9 @@ import CollectionItem from '../../components/CollectionItem/CollectionItem';
 
 const CollectionPage = () => {
     
-    // const COLLECTION_ID_MAP = {
-    //     hats: 1,
-    //     sneakers: 2,
-    //     jackets: 3,
-    //     womens: 4,
-    //     mens: 5,
-    // };
-
     const collections = useSelector(state => state.shop.collections);
     
     let { collectionId } = useParams(); 
-
-    // const collection = collections.find(col => col.id === COLLECTION_ID_MAP[collectionId]);  
 
     const collection = collections.find(item => item.routeName === collectionId);    
 
